@@ -12,21 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import demo.model.Account;
-import demo.repository.AccountRepository;
+import demo.model.UserAccount;
+import demo.repository.UserAccountRepository;
 
 @Controller
 public class DemoController {
 
 	@Autowired
-	AccountRepository repository;
+	UserAccountRepository repository;
 
 
 	@GetMapping(path = "login")
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout,
 			Model model, HttpSession session) {
-		List<Account> userList = repository.selectByExample();
+		List<UserAccount> userList = repository.selectByExample();
 		model.addAttribute("userList", userList);
 
 		model.addAttribute("showErrorMsg", false);
